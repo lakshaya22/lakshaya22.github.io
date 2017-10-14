@@ -1,15 +1,56 @@
-<html>
-  <head>
-    <title>My Homepage</title>
-  </head>
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+	<meta charset="UTF-8">
+	<title>My Team</title>
+</head>
+<body  ng-controller="TreeController">
 
+	
+	<link rel="stylesheet" href="app.css" type="text/css" />
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<script type="text/ng-template"  id="tree_item_renderer.html">
+		<div style="width:250px;height:200px;" ng-click="show(data)"  class="card">
+		 
+			<div style="border-bottom: 1px solid #aeaeae;	" ng-style="data.showChild && {'background-color':'teal'} || {'background-color': 'white'}"  class="container">
+				<div >
+				<h4 ng-style="data.showChild && {'color':'white'} || {'color': 'black'}"  ><b>{{data.name}}</b></h4> 
+				</div>
+			</div>
+			<div style="border-bottom: 1px solid #aeaeae;	">
+					<h4>{{data.personName}}</br><span style="color:#dedeed;margin-top:5px;" >{{data.designation}}</span></h4> 
+				
+					</div>
 
-  <body>
-    <h1>My homepage!</h1>
-    
-    <h2>
-        ;)
-    </h2>
+					<div>
+							<h4><span style="float:left;margin-left:10px;" ><i style="color:deepskyblue;margin-right:5px;" class="fa fa-users" aria-hidden="true"></i>{{data.reportEmployee}}</span><span style="float:right;margin-right:10px;" ><i style="color:deepskyblue;margin-right:5px;" class="fa fa-user" aria-hidden="true"></i>{{data.employee}}</span></h4> 
+						
+							</div>
 
-  </body>
+		</div>
+				
+				<!-- <button  ng-show="data.has" ng-click="add(data)">Add node</button>
+				<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button> -->
+				<div ng-show="data.showChild" class="parent-div">
+						<div class="child-div" ng-repeat="data in data.nodes" ng-include="'tree_item_renderer.html'"></div>
+				</div>
+		</script>
+		
+		<div  class="parent-div">
+				<div class="child-div" ng-repeat="data in tree" ng-include="'tree_item_renderer.html'"></div>
+		</div>
+
+	
+
+	  <script src="app.js"></script>
+
+</body>
 </html>
+<!-- <div class="rating">
+		<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+		
+		<style>
+	.rating {  unicode-bidi: bidi-override;  direction: rtl;  text-align: center;}.rating > span {  display: inline-block;  position: relative;  width: 1.1em;}.rating > span:hover,.rating > span:hover ~ span {  color: transparent;}.rating > span:hover:before,.rating > span:hover ~ span:before {   content: "\2605";   position: absolute;   left: 0;    color: gold;}body { padding: 100px; }
+		</style>
+		</div> -->
