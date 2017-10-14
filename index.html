@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html ng-app="myApp">
+
 <head>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 	<meta charset="UTF-8">
 	<title>My Team</title>
 </head>
-<body  ng-controller="TreeController">
 
-	
+<body ng-controller="TreeController">
+
+
 	<link rel="stylesheet" href="app.css" type="text/css" />
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-	<script type="text/ng-template"  id="tree_item_renderer.html">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	 crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	 crossorigin="anonymous">
+
+	<script type="text/ng-template" id="tree_item_renderer.html">
 		<div style="width:250px;height:200px;" ng-click="show(data)"  class="card">
 		 
 			<div style="border-bottom: 1px solid #aeaeae;	" ng-style="data.showChild && {'background-color':'teal'} || {'background-color': 'white'}"  class="container">
@@ -30,27 +36,21 @@
 
 		</div>
 				
-				<!-- <button  ng-show="data.has" ng-click="add(data)">Add node</button>
-				<button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button> -->
-				<div ng-show="data.showChild" class="parent-div">
+			
+				<div ng-if="data.showChild" class=" col-md-12 parent-div">
 						<div class="child-div" ng-repeat="data in data.nodes" ng-include="'tree_item_renderer.html'"></div>
-				</div>
+				
+					</div>
 		</script>
-		
-		<div  class="parent-div">
-				<div class="child-div" ng-repeat="data in tree" ng-include="'tree_item_renderer.html'"></div>
-		</div>
 
-	
+	<div class="parent-div">
+		<div class="child-div" ng-repeat="data in tree" ng-include="'tree_item_renderer.html'"></div>
+	</div>
 
-	  <script src="app.js"></script>
+
+
+	<script src="app.js"></script>
 
 </body>
+
 </html>
-<!-- <div class="rating">
-		<span>☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
-		
-		<style>
-	.rating {  unicode-bidi: bidi-override;  direction: rtl;  text-align: center;}.rating > span {  display: inline-block;  position: relative;  width: 1.1em;}.rating > span:hover,.rating > span:hover ~ span {  color: transparent;}.rating > span:hover:before,.rating > span:hover ~ span:before {   content: "\2605";   position: absolute;   left: 0;    color: gold;}body { padding: 100px; }
-		</style>
-		</div> -->
